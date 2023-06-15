@@ -38,12 +38,13 @@ resource "digitalocean_droplet" "LMS-PROD-kafka" {
   ssh_keys = [data.digitalocean_ssh_key.terraform.id]
 }
 
-# resource "digitalocean_droplet" "LMS-PROD-jenkins-teens" {
-#   image    = "ubuntu-20-04-x64"
-#   name     = "LMS-PROD-jenkins-teens"
-#   region   = "ams3"
-#   size     = "s-8vcpu-16gb"
-#   ssh_keys = [data.digitalocean_ssh_key.terraform.id]
+ resource "digitalocean_droplet" "LMS-PROD-jenkins-teens" {
+  image    = "ubuntu-20-04-x64"
+  name     = "LMS-PROD-jenkins-teens"
+  region   = "ams3"
+  size     = "s-8vcpu-16gb"
+  ssh_keys = [data.digitalocean_ssh_key.terraform.id]
+ }
 #   user_data = <<-EOF
 #               #!/bin/bash
 #               # Оновлення пакетів
