@@ -20,3 +20,12 @@ resource "digitalocean_database_cluster" "postgres-analistic" {
   region     = "ams3"
   node_count = 1
 }
+
+#resource "digitalocean_database_cluster" "redis" {
+#  name       = "teens-redis-server"
+#  engine     = "redis"
+#  version    = "7"
+#  size       = "db-s-1vcpu-1gb"
+#  region     = "ams3"
+#  node_count = 1
+#}

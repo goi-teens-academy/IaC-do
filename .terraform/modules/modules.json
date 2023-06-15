@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"vpc","Source":"registry.terraform.io/terraform-do-modules/vpc/digitalocean","Version":"0.15.1","Dir":".terraform/modules/vpc"},{"Key":"vpc.labels","Source":"registry.terraform.io/terraform-do-modules/labels/digitalocean","Version":"0.15.0","Dir":".terraform/modules/vpc.labels"}]}
