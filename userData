@@ -1,0 +1,78 @@
+resource "digitalocean_droplet" "jenkins_worker" {
+  # Конфігурація ресурсу Droplet
+
+  name      = "jenkins-worker"
+  region    = "nyc1"
+  size      = "s-1vcpu-1gb"
+  image     = "ubuntu-20-04-x64"
+  user_data = <<-EOF
+              #!/bin/bash
+              # Оновлення пакетів
+              apt-get update -y
+              apt-get upgrade -y
+
+              # Створення користувача Jenkins
+              useradd -m -s /bin/bash -U kafka
+
+              # Додавання користувача Jenkins до групи sudo
+              usermod -aG sudo kafka
+
+              # Налаштування безпарольного доступу до команд sudo для користувача Jenkins
+              echo 'kafka ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+              # Переключення на користувача Jenkins
+              su - kafka <<EOSU
+                # Встановлення Docker та необхідних залежностей
+                sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+                echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                sudo apt-get update -y
+                sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+                # Встановлення Docker Swarm
+                sudo docker swarm init
+
+                # Інші налаштування...
+                # <Додайте ваші налаштування тут>
+
+              EOSU
+              EOF
+}
+______________________________
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    2  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    3  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    4  sudo apt-get update -y
+    5  udo apt-get install -y docker-ce docker-ce-cli containerd.io
+    6  sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+    7  pwd
+    8  touch docker-compose.yaml
+    9  vi docker-compose.yaml
+   10  touch /etc/kafka/kafka_server_jaas.conf
+   11  cd ../
+   12  ls -la
+   13  cd ..
+   14  ls -la
+   15  cd etc
+   16  ls -la
+   17  mkdir kafka
+   18  sudo mkdir kafka
+   19  cd kafka/
+   20  touсh kafka_server_jaas.conf
+   21  touch kafka_server_jaas.conf
+   22  sudo touch kafka_server_jaas.conf
+   23  sudo vi kafka_server_jaas.conf
+   24  docker-compose up -d
+   25  apt  install docker-compose
+   26  sudo apt  install docker-compose
+   27  docker-compose up -d
+   28  cd ~
+   29  pwd
+   30  ls -la
+   31  docker-compose up -d
+   32  sudo docker-compose up -d
+   33  sudo usermod -aG docker ваш_користувач
+   34  sudo usermod -aG docker kafka
+   35  sudo systemctl status docker
+   36  history
+kafka@LMS-PROD-kafka:~$ 
